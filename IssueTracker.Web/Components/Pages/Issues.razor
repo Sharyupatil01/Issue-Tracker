@@ -1,0 +1,53 @@
+@page "/issues"
+
+@using IssueTracker.Web.Models
+@using IssueTracker.Web.Services
+
+@inject IssueService IssueService
+
+<h1>Issues</h1>
+
+@if (issues == null)
+{
+    <p>Loading issues...</p>
+}
+else if (issues.Count == 0)
+{
+    <p>No issues found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Assigned To</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var issue in issues)
+            {
+                <tr>
+                    <td>@issue.Id</td>
+                    <td>@issue.Title</td>
+                    <td>@issue.Status</td>
+                    <td>@issue.Priority</td>
+                    <td>@issue.AssignedTo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Issue>? issues;
+
+    protected override async Task OnInitializedAsync()
+    {
+        issues = await IssueService.GetIssuesAsync();
+    }
+}

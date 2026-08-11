@@ -83,3 +83,4 @@ C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\obj\Debug\net10.0\refint\Iss
 C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\obj\Debug\net10.0\IssueTracker.Web.pdb
 C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\obj\Debug\net10.0\IssueTracker.Web.genruntimeconfig.cache
 C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\obj\Debug\net10.0\ref\IssueTracker.Web.dll
+C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\obj\Debug\net10.0\IssueTracker.Web.sourcelink.json

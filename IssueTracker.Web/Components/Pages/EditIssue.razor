@@ -1,0 +1,117 @@
+@page "/issues/edit/{id:int}"
+@rendermode InteractiveServer
+
+@using IssueTracker.Web.Models
+@using IssueTracker.Web.Services
+
+@inject IssueService IssueService
+@inject NavigationManager Navigation
+
+<PageTitle>Edit Issue</PageTitle>
+
+<h1>Edit Issue</h1>
+
+@if (issue == null)
+{
+    <p>Loading issue...</p>
+}
+else
+{
+    <div class="mt-4">
+
+        <EditForm Model="@issue" OnSubmit="@HandleUpdateIssue">
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+
+                <InputText class="form-control"
+                           @bind-Value="issue.Title" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <InputTextArea class="form-control"
+                               @bind-Value="issue.Description" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+
+                <InputSelect class="form-select"
+                             @bind-Value="issue.Priority">
+
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+
+                </InputSelect>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+
+                <InputSelect class="form-select"
+                             @bind-Value="issue.Status">
+
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+
+                </InputSelect>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Assigned To</label>
+
+                <InputText class="form-control"
+                           @bind-Value="issue.AssignedTo" />
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Update Issue
+            </button>
+
+            <button type="button"
+                    class="btn btn-secondary ms-2"
+                    @onclick="GoBack">
+                Cancel
+            </button>
+
+        </EditForm>
+
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int id { get; set; }
+
+    private Issue? issue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        issue = await IssueService.GetIssueAsync(id);
+    }
+
+    private async Task HandleUpdateIssue()
+    {
+        if (issue == null)
+            return;
+
+        var success = await IssueService.UpdateIssueAsync(issue);
+
+        if (success)
+        {
+            Navigation.NavigateTo("/issues");
+        }
+    }
+
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/issues");
+    }
+}

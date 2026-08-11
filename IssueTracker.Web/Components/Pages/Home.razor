@@ -1,4 +1,10 @@
 @page "/"
+@rendermode InteractiveServer
+
+@using IssueTracker.Web.Models
+@using IssueTracker.Web.Services
+
+@inject IssueService IssueService
 
 <PageTitle>Dashboard</PageTitle>
 
@@ -6,34 +12,51 @@
 
 <p>Welcome to the Issue Tracker.</p>
 
-<div class="row mt-4">
+@if (stats == null)
+{
+    <p>Loading dashboard...</p>
+}
+else
+{
+    <div class="row mt-4">
 
-    <div class="col-md-3">
-        <div class="card p-3">
-            <h5>Total Issues</h5>
-            <h2>0</h2>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>Total Issues</h5>
+                <h2>@stats.TotalIssues</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card p-3">
-            <h5>Open</h5>
-            <h2>0</h2>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>Open</h5>
+                <h2>@stats.OpenIssues</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card p-3">
-            <h5>In Progress</h5>
-            <h2>0</h2>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>In Progress</h5>
+                <h2>@stats.InProgressIssues</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card p-3">
-            <h5>Closed</h5>
-            <h2>0</h2>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>Closed</h5>
+                <h2>@stats.ClosedIssues</h2>
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
+}
+
+@code
+{
+    private DashboardStats? stats;
+
+    protected override async Task OnInitializedAsync()
+    {
+        stats = await IssueService.GetDashboardStatsAsync();
+    }
+}

@@ -16,32 +16,41 @@ public class IssuesController : ControllerBase
         _context = context;
     }
 
+    // =========================================================
+    // GET: api/issues
+    // Get all issues
+    // =========================================================
+
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Issue>>> GetIssues()
+public async Task<ActionResult<IEnumerable<Issue>>> GetIssues(
+    [FromQuery] int page = 1,
+    [FromQuery] int pageSize = 5)
+{
+    if (page < 1)
     {
-        var issues = await _context.Issues.ToListAsync();
-
-        return Ok(issues);
+        page = 1;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Issue>> CreateIssue(Issue issue)
+    if (pageSize < 1)
     {
-        _context.Issues.Add(issue);
-
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(
-            nameof(GetIssues),
-            new { id = issue.Id },
-            issue);
+        pageSize = 5;
     }
 
-    //Here the getissue method is added to the issue controller to get a specific issue 
-    //selecting the particular id that is needed for fetching the issue from the database.
+    var issues = await _context.Issues
+        .OrderBy(i => i.Id)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToListAsync();
 
+    return Ok(issues);
+}
 
-    [HttpGet("{id}")]
+    // =========================================================
+    // GET: api/issues/{id}
+    // Get a specific issue by ID
+    // =========================================================
+
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<Issue>> GetIssue(int id)
     {
         var issue = await _context.Issues.FindAsync(id);
@@ -54,27 +63,35 @@ public class IssuesController : ControllerBase
         return Ok(issue);
     }
 
-    //the next controllers restapi , we will execute include 
-    // delete by id  and update the id 
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteIssue(int id)
+    // =========================================================
+    // POST: api/issues
+    // Create a new issue
+    // =========================================================
+
+    [HttpPost]
+    public async Task<ActionResult<Issue>> CreateIssue(Issue issue)
     {
-        var issue = await _context.Issues.FindAsync(id);
+        _context.Issues.Add(issue);
 
-        if (issue == null)
-        {
-            return NotFound();
-        }
-
-        _context.Issues.Remove(issue);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return CreatedAtAction(
+            nameof(GetIssue),
+            new { id = issue.Id },
+            issue);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateIssue(int id, Issue updatedIssue)
+
+    // =========================================================
+    // PUT: api/issues/{id}
+    // Update an existing issue
+    // =========================================================
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateIssue(
+        int id,
+        Issue updatedIssue)
     {
         if (id != updatedIssue.Id)
         {
@@ -98,39 +115,68 @@ public class IssuesController : ControllerBase
 
         return NoContent();
     }
-    // getting the issues by using the search method to get the issue 
-    // the search method is used to  get the issues from it id 
 
-    
 
-    //here the filter get method is added to issuethe controller 
-    /// <summary>
-    ///  fliter based on status, priority, and assignedTo parameters.
-    /// </summary>
-    /// <param name="status"></param>
-    /// <param name="priority"></param>
-    /// <param name="assignedTo"></param>
-    /// <returns></returns>
+    // =========================================================
+    // DELETE: api/issues/{id}
+    // Delete an issue
+    // =========================================================
 
-    [HttpGet("filter")]
-    public async Task<ActionResult<IEnumerable<Issue>>> FilterIssues(
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteIssue(int id)
+    {
+        var issue = await _context.Issues.FindAsync(id);
+
+        if (issue == null)
+        {
+            return NotFound();
+        }
+
+        _context.Issues.Remove(issue);
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+
+    // =========================================================
+    // GET: api/issues/search
+    // Search issues using query parameters
+    //
+    // Examples:
+    //
+    // /api/issues/search?status=Open
+    //
+    // /api/issues/search?priority=High
+    //
+    // /api/issues/search?status=Open&priority=High
+    //
+    // /api/issues/search?assignedTo=Piyu
+    // =========================================================
+
+    [HttpGet("search")]
+    public async Task<ActionResult<IEnumerable<Issue>>> SearchIssues(
         [FromQuery] string? status,
         [FromQuery] string? priority,
         [FromQuery] string? assignedTo)
     {
         var query = _context.Issues.AsQueryable();
 
-        if (!string.IsNullOrEmpty(status))
+        // Filter by Status
+        if (!string.IsNullOrWhiteSpace(status))
         {
             query = query.Where(i => i.Status == status);
         }
 
-        if (!string.IsNullOrEmpty(priority))
+        // Filter by Priority
+        if (!string.IsNullOrWhiteSpace(priority))
         {
             query = query.Where(i => i.Priority == priority);
         }
 
-        if (!string.IsNullOrEmpty(assignedTo))
+        // Filter by Assigned To
+        if (!string.IsNullOrWhiteSpace(assignedTo))
         {
             query = query.Where(i => i.AssignedTo == assignedTo);
         }
@@ -141,4 +187,39 @@ public class IssuesController : ControllerBase
     }
 
 
+    // =========================================================
+    // GET: api/issues/filter
+    // Filter issues using query parameters
+    //
+    // This currently performs the same filtering as /search.
+    // We can later give /filter different functionality if needed.
+    // =========================================================
+
+    [HttpGet("filter")]
+    public async Task<ActionResult<IEnumerable<Issue>>> FilterIssues(
+        [FromQuery] string? status,
+        [FromQuery] string? priority,
+        [FromQuery] string? assignedTo)
+    {
+        var query = _context.Issues.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(status))
+        {
+            query = query.Where(i => i.Status == status);
+        }
+
+        if (!string.IsNullOrWhiteSpace(priority))
+        {
+            query = query.Where(i => i.Priority == priority);
+        }
+
+        if (!string.IsNullOrWhiteSpace(assignedTo))
+        {
+            query = query.Where(i => i.AssignedTo == assignedTo);
+        }
+
+        var issues = await query.ToListAsync();
+
+        return Ok(issues);
+    }
 }

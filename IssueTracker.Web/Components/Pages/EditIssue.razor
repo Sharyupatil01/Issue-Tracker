@@ -28,12 +28,14 @@ else
                            @bind-Value="issue.Title" />
             </div>
 
+
             <div class="mb-3">
                 <label class="form-label">Description</label>
 
                 <InputTextArea class="form-control"
                                @bind-Value="issue.Description" />
             </div>
+
 
             <div class="mb-3">
                 <label class="form-label">Priority</label>
@@ -49,6 +51,7 @@ else
                 </InputSelect>
             </div>
 
+
             <div class="mb-3">
                 <label class="form-label">Status</label>
 
@@ -62,12 +65,27 @@ else
                 </InputSelect>
             </div>
 
+
+            <!-- Assigned User -->
+
             <div class="mb-3">
                 <label class="form-label">Assigned To</label>
 
-                <InputText class="form-control"
-                           @bind-Value="issue.AssignedTo" />
+                <InputSelect class="form-select"
+                             @bind-Value="issue.AssignedToUserId">
+
+                    <option value="">Unassigned</option>
+
+                    @foreach (var user in users)
+                    {
+                        <option value="@user.Id">
+                            @user.Name (@user.Role)
+                        </option>
+                    }
+
+                </InputSelect>
             </div>
+
 
             <button type="submit"
                     class="btn btn-primary">
@@ -85,6 +103,7 @@ else
     </div>
 }
 
+
 @code {
 
     [Parameter]
@@ -92,15 +111,25 @@ else
 
     private Issue? issue;
 
+    private List<User> users = new();
+
+
     protected override async Task OnInitializedAsync()
     {
+        // Load users for dropdown
+        users = await IssueService.GetUsersAsync();
+
+        // Load the issue
         issue = await IssueService.GetIssueAsync(id);
     }
+
 
     private async Task HandleUpdateIssue()
     {
         if (issue == null)
+        {
             return;
+        }
 
         var success = await IssueService.UpdateIssueAsync(issue);
 
@@ -109,6 +138,7 @@ else
             Navigation.NavigateTo("/issues");
         }
     }
+
 
     private void GoBack()
     {

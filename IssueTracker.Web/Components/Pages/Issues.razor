@@ -104,7 +104,7 @@ else
                     </td>
                     <td>@issue.Status</td>
                     <td>@issue.Priority</td>
-                    <td>@issue.AssignedTo</td>
+                    <td>@(issue.AssignedToUser?.Name ?? "Unassigned")</td>
 
     <td>
         <a class="btn btn-sm btn-primary"

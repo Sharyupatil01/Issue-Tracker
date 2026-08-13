@@ -93,4 +93,10 @@ public async Task<DashboardStats?> GetDashboardStatsAsync()
     return await _httpClient.GetFromJsonAsync<DashboardStats>(
         "api/dashboard/stats");
 }
+
+public async Task<List<User>> GetUsersAsync()
+{
+    return await _httpClient.GetFromJsonAsync<List<User>>(
+        "api/users") ?? new List<User>();
+}
 }

@@ -13,7 +13,7 @@
 
 <div class="mt-4">
 
-    <EditForm Model="@newIssue" OnSubmit="@HandleCreateIssue">
+    <EditForm Model="@newIssue" OnValidSubmit="@HandleCreateIssue">
 
         <div class="mb-3">
             <label class="form-label">Title</label>
@@ -56,28 +56,36 @@
             </InputSelect>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <!-- Assigned User -->
+
+        <div class="mb-3">
+            <label class="form-label">Assigned To</label>
+
+            <InputSelect class="form-select"
+                         @bind-Value="newIssue.AssignedToUserId">
+
+                <option value="">Unassigned</option>
+
+                @foreach (var user in users)
+                {
+                    <option value="@user.Id">
+                        @user.Name (@user.Role)
+                    </option>
+                }
+
+            </InputSelect>
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
             Create Issue
         </button>
-
-
-@if (!string.IsNullOrEmpty(messageError))
-{
-    <p class="mt-3">@messageError</p>
-}
-}
-
-
-
 
     </EditForm>
 
 </div>
 
-
-
 @code {
-    private string messageError="";
 
     private Issue newIssue = new()
     {
@@ -85,32 +93,21 @@
         Priority = "Medium"
     };
 
+    private List<User> users = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await IssueService.GetUsersAsync();
+    }
+
     private async Task HandleCreateIssue()
-{
-    messageError = "Button clicked...";
-
-    var createdIssue = await IssueService.CreateIssueAsync(newIssue);
-
-    if (createdIssue != null)
     {
-        messageError = "Issue created successfully!";
-
-        Navigation.NavigateTo("/issues");
-    }
-    else
-    {
-        messageError = "API failed to create the issue.";
-    }
-}
-
-    @* private async Task HandleCreateIssue()
-    {
-        var createdIssue = await IssueService.CreateIssueAsync(newIssue);
+        var createdIssue =
+            await IssueService.CreateIssueAsync(newIssue);
 
         if (createdIssue != null)
         {
             Navigation.NavigateTo("/issues");
         }
-    } *@
-
+    }
 }

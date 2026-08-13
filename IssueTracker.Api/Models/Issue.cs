@@ -14,7 +14,10 @@ public class Issue
 
     public string Priority { get; set; } = "Medium";
 
-    public string AssignedTo { get; set; } = string.Empty;
+      public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+      public int? AssignedToUserId { get; set; }
+
+      public User? AssignedToUser { get; set; }
+
 }

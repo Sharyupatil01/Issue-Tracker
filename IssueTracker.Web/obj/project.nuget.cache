@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8FX+YUHl2TU=",
+  "dgSpecHash": "EM64iIz22mM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\IssueTracker.Web.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\IssueTracker.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.10\\microsoft.aspnetcore.app.internal.assets.10.0.10.nupkg.sha512"
   ],

@@ -12,61 +12,61 @@ build_property.EntryPointFilePath =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = IssueTracker.Web
 build_property.RootNamespace = IssueTracker.Web
-build_property.ProjectDir = C:\Users\user\Desktop\IssueTracker\IssueTracker.Web\
+build_property.ProjectDir = C:\Users\user\Desktop\IssueTracker\IssueTracker.web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\user\Desktop\IssueTracker\IssueTracker.Web
+build_property.MSBuildProjectDirectory = C:\Users\user\Desktop\IssueTracker\IssueTracker.web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/App.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/CreateIssue.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/CreateIssue.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVJc3N1ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/EditIssue.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/EditIssue.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFZGl0SXNzdWUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/Home.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/IssueDetails.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/IssueDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJc3N1ZURldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/Issues.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/Issues.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJc3N1ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Pages/NotFound.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Routes.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/_Imports.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Layout/MainLayout.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-off6mm4g0h
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Layout/NavMenu.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-fman0r8e6x
 
-[C:/Users/user/Desktop/IssueTracker/IssueTracker.Web/Components/Layout/ReconnectModal.razor]
+[C:/Users/user/Desktop/IssueTracker/IssueTracker.web/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-mxbd9y22f8

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\IssueTracker.Web.csproj": {}
+    "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\IssueTracker.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\IssueTracker.Web.csproj": {
+    "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\IssueTracker.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\IssueTracker.Web.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\IssueTracker.Web.csproj",
         "projectName": "IssueTracker.Web",
-        "projectPath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\IssueTracker.Web.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\IssueTracker.Web.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.Web\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\IssueTracker\\IssueTracker.web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

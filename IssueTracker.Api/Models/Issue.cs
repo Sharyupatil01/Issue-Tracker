@@ -20,4 +20,6 @@ public class Issue
 
       public User? AssignedToUser { get; set; }
 
+      public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
 }
